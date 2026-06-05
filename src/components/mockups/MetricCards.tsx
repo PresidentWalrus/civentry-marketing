@@ -6,9 +6,9 @@ import {
   ArrowDown,
   type LucideIcon,
 } from "lucide-react";
-import { CountUp } from "./CountUp";
+import { CountUp, AnimatedBar } from "@/components/motion";
 
-/* Status palette — mirrors the app's financial-health semantics. */
+/* Status palette mirrors the app's financial-health semantics. */
 const STATUS = {
   alert: "#DC2626",
   healthy: "#16A34A",
@@ -48,7 +48,7 @@ function Card({
 }) {
   return (
     <div
-      className="card-shadow flex flex-col rounded-[20px] border border-line bg-white p-5"
+      className="lift card-shadow flex flex-col rounded-[20px] border border-line bg-white p-5"
       style={{ borderLeft: `4px solid ${STATUS[status]}` }}
     >
       {children}
@@ -56,50 +56,28 @@ function Card({
   );
 }
 
-/** Thin progress track + fill. */
-function Bar({ pct, color }: { pct: number; color: string }) {
-  return (
-    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-off-white">
-      <div
-        className="h-full rounded-full"
-        style={{ width: `${Math.min(pct, 100)}%`, background: color }}
-      />
-    </div>
-  );
-}
-
 /**
  * The four headline metric cards from the Civentry dashboard, recreated as
- * crisp HTML/CSS. Figures are realistic-but-fake (an underfunded demo HOA).
- * `animate` drives the count-up flourish (on in the hero). `layout="two"`
- * keeps a 2-up grid for narrow columns (Tailwind breakpoints are
- * viewport-based, so a full-width 4-up would cram a half-width container).
+ * crisp HTML/CSS. Figures count up and bars fill as the cards enter view.
+ * Numbers are realistic-but-fake (a believably underfunded demo HOA).
+ * `layout="two"` keeps a 2-up grid for narrow columns (Tailwind breakpoints
+ * are viewport-based, so a full-width 4-up would cram a half-width column).
  */
-export function MetricCards({
-  animate = false,
-  layout = "auto",
-}: {
-  animate?: boolean;
-  layout?: "auto" | "two";
-}) {
+export function MetricCards({ layout = "auto" }: { layout?: "auto" | "two" }) {
   const grid =
     layout === "two"
       ? "grid-cols-1 sm:grid-cols-2"
       : "grid-cols-1 sm:grid-cols-2 xl:grid-cols-4";
   return (
     <div className={`grid gap-3.5 ${grid}`}>
-      {/* Operating Cash — running low (alert) */}
+      {/* Operating Cash (running low) */}
       <Card status="alert">
         <div className="mb-3 flex items-start justify-between">
           <IconChip icon={Wallet} status="alert" />
         </div>
         <Label>Operating Cash</Label>
         <p className="font-data mt-1.5 text-[26px] font-medium leading-none tracking-tight text-navy">
-          {animate ? (
-            <CountUp value={25764.59} prefix="$" decimals={2} />
-          ) : (
-            "$25,764.59"
-          )}
+          <CountUp value={25764.59} prefix="$" decimals={2} />
         </p>
         <p className="mt-3 flex items-center gap-1 text-[13px] font-medium text-alert">
           <ArrowDown size={13} strokeWidth={2.5} aria-hidden />
@@ -108,29 +86,25 @@ export function MetricCards({
         </p>
       </Card>
 
-      {/* Reserve Balance — 28% funded (alert) */}
+      {/* Reserve Balance (28% funded) */}
       <Card status="alert">
         <div className="mb-3 flex items-start justify-between">
           <IconChip icon={PiggyBank} status="alert" />
         </div>
         <Label>Reserve Balance</Label>
         <p className="font-data mt-1.5 text-[26px] font-medium leading-none tracking-tight text-navy">
-          {animate ? (
-            <CountUp value={454408.94} prefix="$" decimals={2} />
-          ) : (
-            "$454,408.94"
-          )}
+          <CountUp value={454408.94} prefix="$" decimals={2} />
         </p>
         <p className="mt-3 text-[13px]">
           <span className="font-data font-semibold text-teal">28% funded</span>
         </p>
-        <Bar pct={28} color={STATUS.teal} />
+        <AnimatedBar pct={28} color={STATUS.teal} className="mt-2" />
         <p className="mt-2 text-xs text-mute">
           vs <span className="font-data">$1.6M</span> fully-funded target
         </p>
       </Card>
 
-      {/* Budget vs Actual — under budget (healthy) */}
+      {/* Budget vs Actual (under budget) */}
       <Card status="healthy">
         <div className="mb-3 flex items-start justify-between">
           <IconChip icon={Scale} status="healthy" />
@@ -143,24 +117,23 @@ export function MetricCards({
         </div>
         <Label>Budget vs Actual</Label>
         <p className="font-data mt-1.5 text-[26px] font-medium leading-none tracking-tight text-navy">
-          Under by{" "}
-          {animate ? <CountUp value={6905} prefix="$" /> : "$6,905"}
+          Under by <CountUp value={6905} prefix="$" />
         </p>
-        <Bar pct={90} color={STATUS.healthy} />
+        <AnimatedBar pct={90} color={STATUS.healthy} className="mt-2.5" />
         <p className="mt-2 text-xs text-mute">
           <span className="font-data">$62,180</span> actual ·{" "}
           <span className="font-data">$69,085</span> budget
         </p>
       </Card>
 
-      {/* Delinquency — watch */}
+      {/* Delinquency (watch) */}
       <Card status="watch">
         <div className="mb-3 flex items-start justify-between">
           <IconChip icon={Clock} status="watch" />
         </div>
         <Label>Delinquency</Label>
         <p className="font-data mt-1.5 text-[26px] font-medium leading-none tracking-tight text-navy">
-          {animate ? <CountUp value={32303} prefix="$" /> : "$32,303"}
+          <CountUp value={32303} prefix="$" />
         </p>
         <p className="mt-3 text-[13px] text-slate">
           <span className="font-data">36</span> units ·{" "}

@@ -12,7 +12,7 @@ export function CcrMock() {
       {/* Faux question input */}
       <div className="mt-3 flex items-center gap-2 rounded-xl border border-line bg-page/70 px-3 py-2.5">
         <p className="flex-1 text-[13px] text-navy">
-          What notice period is required before a special assessment vote?
+          Does a resident need approval to build a pergola?
         </p>
         <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal text-white">
           <CornerDownLeft size={14} aria-hidden />
@@ -30,22 +30,21 @@ export function CcrMock() {
         </span>
 
         <p className="mt-3 text-[13px] leading-relaxed text-navy">
-          Owners must receive written notice at least{" "}
-          <span className="font-semibold">30 days</span> before a special
-          assessment vote, and the notice has to state the purpose and amount.
+          Yes. Any exterior structure, a pergola included, needs written
+          approval from the architectural committee before work begins.
         </p>
 
         <blockquote
           className="mt-3 pl-3.5 text-[13px] italic leading-relaxed text-slate"
           style={{ borderLeft: "3px solid #0F766E" }}
         >
-          &ldquo;No special assessment shall be levied without no less than
-          thirty (30) days&rsquo; written notice to all members stating the
-          purpose and amount of the assessment.&rdquo;
+          &ldquo;No exterior structure, addition, or alteration shall be
+          commenced until the plans have been approved in writing by the
+          Architectural Review Committee.&rdquo;
         </blockquote>
 
         <p className="font-data mt-3 text-[11px] font-semibold text-teal">
-          CC&amp;Rs · Article VII · Section 7.3 · Clause (b)
+          CC&amp;Rs · Article V · Section 5.2 · Clause (a)
         </p>
       </div>
     </Panel>

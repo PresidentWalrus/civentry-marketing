@@ -1,11 +1,11 @@
 import { Sparkles, Check } from "lucide-react";
-import { TypeLine } from "./TypeLine";
+import { Stagger, StaggerItem } from "@/components/motion";
 
 const SECTIONS = [
   {
     emoji: "💵",
     label: "Income",
-    text: "Dues are landing on time — $61,940 collected this quarter, a 98% on-time rate.",
+    text: "Dues are landing on time. $61,940 collected this quarter, a 98% on-time rate.",
   },
   {
     emoji: "📊",
@@ -15,7 +15,7 @@ const SECTIONS = [
   {
     emoji: "🏦",
     label: "Reserves",
-    text: "Reserves sit at 28% funded against a $1.6M target — below the 70% comfort line. A $480/mo bump closes the gap over ten years.",
+    text: "Reserves sit at 28% funded against a $1.6M target, below the 70% comfort line. A $480/mo bump closes the gap over ten years.",
   },
   {
     emoji: "📥",
@@ -25,11 +25,11 @@ const SECTIONS = [
 ] as const;
 
 /**
- * The AI "Treasurer Brief" card — gold left border, sparkle header,
- * emoji-labeled themed sections, an approved footer. Matches the app's
- * AISummaryCard. Pass `typing` to type the first section in (hero only).
+ * The AI "Treasurer Brief" card: gold left border, sparkle header,
+ * emoji-labeled themed sections that write in one after another, an
+ * approved footer. Matches the app's AISummaryCard.
  */
-export function TreasurerBriefMock({ typing = false }: { typing?: boolean }) {
+export function TreasurerBriefMock() {
   return (
     <div
       className="card-shadow rounded-[20px] border border-line bg-white p-5"
@@ -45,9 +45,9 @@ export function TreasurerBriefMock({ typing = false }: { typing?: boolean }) {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-6 gap-y-3.5 sm:grid-cols-2">
-        {SECTIONS.map((s, i) => (
-          <div key={s.label} className="flex gap-2.5">
+      <Stagger className="grid grid-cols-1 gap-x-6 gap-y-3.5 sm:grid-cols-2">
+        {SECTIONS.map((s) => (
+          <StaggerItem key={s.label} className="flex gap-2.5">
             <span className="text-[15px] leading-snug" aria-hidden>
               {s.emoji}
             </span>
@@ -56,12 +56,12 @@ export function TreasurerBriefMock({ typing = false }: { typing?: boolean }) {
                 {s.label}
               </p>
               <p className="mt-0.5 text-[13px] leading-relaxed text-slate">
-                {typing && i === 0 ? <TypeLine text={s.text} /> : s.text}
+                {s.text}
               </p>
             </div>
-          </div>
+          </StaggerItem>
         ))}
-      </div>
+      </Stagger>
 
       <div className="mt-5 flex items-center gap-1.5 border-t border-line pt-3.5">
         <Check size={13} className="text-healthy" strokeWidth={2.5} aria-hidden />

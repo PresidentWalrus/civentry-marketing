@@ -18,8 +18,8 @@ export function ResidentMock() {
       </div>
 
       <p className="mt-3 text-[13px] leading-relaxed text-slate">
-        Residents get a board-approved, read-only snapshot — sanitized, with no
-        owner names or unit-level detail.
+        Residents get a board-approved, read-only snapshot. No owner names, no
+        unit-level detail.
       </p>
 
       {/* Resident link */}
@@ -43,8 +43,8 @@ export function ResidentMock() {
       <div className="mt-3 flex items-center gap-2 rounded-lg border border-dashed border-line px-3 py-2.5">
         <ShieldCheck size={15} className="shrink-0 text-healthy" aria-hidden />
         <p className="text-xs text-mute">
-          They see reserves on plan and the budget under — never an owner&rsquo;s
-          balance.
+          They see reserves on plan and the budget under, never an
+          owner&rsquo;s balance.
         </p>
       </div>
     </Panel>

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 /* ============================================================
-   CIVENTRY MARKETING — DESIGN TOKENS
-   Palette + type mirror the product (civentry/src/app/globals.css)
-   so the site and the app read as one brand.
+   CIVENTRY MARKETING / DESIGN TOKENS
+   Palette + type mirror the product so site and app read as one
+   brand. Light overall, with navy used as a dramatic accent block.
    ============================================================ */
 
 @theme {
-  /* --- Brand palette --- */
+  /* Brand palette */
   --color-navy: #0b1d3a;
   --color-navy-700: #122a4d;
   --color-teal: #0f766e;
@@ -15,27 +15,29 @@
   --color-teal-50: #f0fbf9;
   --color-gold: #d4af37;
 
-  /* --- Neutrals --- */
+  /* Neutrals + tinted section canvases (the tonal rhythm) */
   --color-slate: #334155;
   --color-mute: #6b7280;
   --color-line: #e5e7eb;
   --color-off-white: #f2f4f7;
   --color-page: #f7f8fa;
+  --color-cream: #faf7f1;
+  --color-mist: #eef6f5;
   --color-canvas: #ffffff;
 
-  /* --- Financial health semantics (match the app) --- */
+  /* Financial-health semantics (match the app) */
   --color-healthy: #16a34a;
   --color-watch: #d97706;
   --color-alert: #dc2626;
 
-  /* --- Type --- */
+  /* Type */
   --font-sans: var(--font-ui), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-data), ui-monospace, "SF Mono", monospace;
 
-  /* --- Radius --- */
+  /* Radius */
   --radius-card: 20px;
 
-  /* --- Easing --- */
+  /* Easing */
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -49,17 +51,16 @@
 
 html {
   scroll-behavior: smooth;
-  /* Keep anchored sections clear of the sticky nav. */
-  scroll-padding-top: 96px;
+  scroll-padding-top: 88px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--color-page);
+  background: var(--color-canvas);
   color: var(--color-navy);
   font-family: var(--font-sans);
-  line-height: 1.6;
+  line-height: 1.55;
   font-feature-settings: "ss01", "cv01";
 }
 
@@ -79,101 +80,127 @@ body {
   font-variant-numeric: tabular-nums lining-nums;
 }
 
+/* On navy accent blocks, selection + focus stay legible. */
+.on-navy ::selection {
+  background: rgba(212, 175, 55, 0.3);
+  color: #fff;
+}
+
 /* ============================================================
-   PRODUCT-MOCKUP SURFACES
-   The shadow + radius the real dashboard cards use.
+   ELEVATION
    ============================================================ */
 
+/* The shadow the real dashboard cards use. */
 .card-shadow {
   box-shadow:
     0 1px 3px rgba(11, 29, 58, 0.06),
     0 4px 16px rgba(11, 29, 58, 0.04);
 }
 
-/* The hero/product frame — a deeper, floating-glass shadow. */
+/* Deep, floating shadow for framed product surfaces. */
 .frame-shadow {
   box-shadow:
     0 1px 1px rgba(11, 29, 58, 0.04),
-    0 8px 24px rgba(11, 29, 58, 0.08),
-    0 32px 64px -24px rgba(11, 29, 58, 0.18);
+    0 10px 30px rgba(11, 29, 58, 0.08),
+    0 40px 80px -28px rgba(11, 29, 58, 0.24);
+}
+
+/* A small floating UI chip that peeks off a product surface. */
+.float-shadow {
+  box-shadow:
+    0 2px 6px rgba(11, 29, 58, 0.08),
+    0 16px 36px -12px rgba(11, 29, 58, 0.28);
+}
+
+/* Hover lift for plain (non-motion) cards (transform + shadow via CSS). */
+.lift {
+  transition:
+    transform 0.28s var(--ease-out-soft),
+    box-shadow 0.28s var(--ease-out-soft);
+  will-change: transform;
+}
+.lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 6px rgba(11, 29, 58, 0.07),
+    0 18px 40px -16px rgba(11, 29, 58, 0.22);
+}
+
+/* Shadow-only hover, for cards whose transform is owned by motion
+   (so the inline transform and the CSS hover never fight). */
+.hover-shadow {
+  transition: box-shadow 0.28s var(--ease-out-soft);
+}
+.hover-shadow:hover {
+  box-shadow:
+    0 2px 6px rgba(11, 29, 58, 0.07),
+    0 18px 40px -16px rgba(11, 29, 58, 0.22);
 }
 
 /* ============================================================
-   ATMOSPHERE — restrained, engineered, never decorative-loud
+   ATMOSPHERE
    ============================================================ */
 
-/* Faint blueprint grid — structure as texture, not spectacle. */
+/* Faint blueprint grid (structure as texture). */
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgba(11, 29, 58, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(11, 29, 58, 0.04) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(to right, rgba(11, 29, 58, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 29, 58, 0.045) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
-/* Soft radial wash that fades the grid out at the edges. */
+/* Same grid in light ink, for navy blocks. */
+.bg-grid-light {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
 .bg-fade-edges {
-  -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 78%);
-  mask-image: radial-gradient(120% 80% at 50% 0%, #000 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 85% at 50% 0%, #000 35%, transparent 78%);
+  mask-image: radial-gradient(120% 85% at 50% 0%, #000 35%, transparent 78%);
 }
 
-/* A single, quiet teal aura behind the hero product. */
+/* A single quiet teal aura behind hero/CTA product moments. */
 .aura-teal {
   background: radial-gradient(
-    60% 50% at 50% 40%,
-    rgba(15, 118, 110, 0.1) 0%,
-    rgba(100, 182, 176, 0.05) 45%,
+    55% 50% at 50% 38%,
+    rgba(15, 118, 110, 0.12) 0%,
+    rgba(100, 182, 176, 0.06) 45%,
     transparent 72%
   );
 }
 
-/* ============================================================
-   SCROLL REVEAL — gentle fade + rise, Linear-grade restraint
-   Driven by IntersectionObserver toggling .is-visible.
-   ============================================================ */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.7s var(--ease-out-soft),
-    transform 0.7s var(--ease-out-soft);
-  will-change: opacity, transform;
-}
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+.aura-gold {
+  background: radial-gradient(
+    50% 50% at 70% 30%,
+    rgba(212, 175, 55, 0.16) 0%,
+    transparent 70%
+  );
 }
 
 /* ============================================================
-   HERO — one subtle live touch (caret on the typing brief)
+   AMBIENT LIVE DOT (hero only)
    ============================================================ */
 
-@keyframes caret-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+@keyframes live-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.45); }
+  70% { box-shadow: 0 0 0 6px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
 }
 
-.type-caret::after {
-  content: "";
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  background: var(--color-teal);
-  animation: caret-blink 1s steps(1) infinite;
+.live-dot {
+  animation: live-pulse 2.4s ease-out infinite;
 }
 
-/* Quiet funding-bar fill animation on first reveal. */
-@keyframes bar-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
+/* Slow vertical drift for a floating chip (subtle). */
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
-
-.bar-fill {
-  transform-origin: left center;
-  animation: bar-grow 1.1s var(--ease-out-soft) both;
+.chip-float {
+  animation: chip-float 5s ease-in-out infinite;
 }
 
 /* ============================================================
@@ -190,9 +217,5 @@ body {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
   }
 }

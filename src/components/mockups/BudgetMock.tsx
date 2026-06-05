@@ -1,4 +1,5 @@
 import { Panel, MockLabel } from "./shared";
+import { AnimatedBar } from "@/components/motion";
 
 type Row = {
   name: string;
@@ -16,12 +17,12 @@ const ROWS: Row[] = [
 
 const fmt = (n: number) => `$${n.toLocaleString("en-US")}`;
 
-function BudgetRow({ name, actual, budget }: Row) {
+function BudgetRow({ name, actual, budget, delay = 0 }: Row & { delay?: number }) {
   const over = actual > budget;
   const onTrack = actual === budget;
   const pct = Math.min((actual / budget) * 100, 100);
   const variance = Math.abs(budget - actual);
-  const color = over ? "#DC2626" : "#16A34A";
+  const color = over ? "#DC2626" : onTrack ? "#6B7280" : "#16A34A";
 
   return (
     <div className="py-3">
@@ -34,12 +35,7 @@ function BudgetRow({ name, actual, budget }: Row) {
           {onTrack ? "on budget" : `${over ? "over" : "under"} ${fmt(variance)}`}
         </span>
       </div>
-      <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-off-white">
-        <div
-          className="h-full rounded-full"
-          style={{ width: `${pct}%`, background: color }}
-        />
-      </div>
+      <AnimatedBar pct={pct} color={color} delay={delay} className="mt-2" />
       <p className="font-data mt-1.5 text-[11px] text-mute">
         {fmt(actual)} of {fmt(budget)}
       </p>
@@ -66,8 +62,8 @@ export function BudgetMock() {
       </div>
 
       <div className="mt-3 divide-y divide-line">
-        {ROWS.map((r) => (
-          <BudgetRow key={r.name} {...r} />
+        {ROWS.map((r, i) => (
+          <BudgetRow key={r.name} {...r} delay={i * 0.08} />
         ))}
       </div>
 

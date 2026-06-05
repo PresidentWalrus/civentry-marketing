@@ -1,4 +1,5 @@
 import { Panel, MockLabel } from "./shared";
+import { AnimatedBar } from "@/components/motion";
 
 const TIMELINE_START = 2026;
 const TIMELINE_END = 2036;
@@ -30,12 +31,7 @@ export function ReserveMock() {
             <span className="font-data text-xl font-semibold text-navy">28%</span>
             <span className="text-sm text-mute">funded</span>
           </div>
-          <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-off-white">
-            <div
-              className="h-full rounded-full"
-              style={{ width: "28%", background: "#DC2626" }}
-            />
-          </div>
+          <AnimatedBar pct={28} color="#DC2626" height="h-2" className="mt-3" />
           <div className="mt-4 flex justify-between border-t border-line pt-3 text-xs">
             <div>
               <p className="font-data font-semibold text-navy">$454K</p>
@@ -60,7 +56,7 @@ export function ReserveMock() {
           <p className="mt-3 text-[13px] leading-relaxed text-slate">
             Raising the reserve contribution by{" "}
             <span className="font-data text-navy">$480</span> a month closes the
-            gap over ten years — no special assessment.
+            gap over ten years, no special assessment.
           </p>
           <div className="mt-4 flex items-center gap-2 border-t border-line pt-3 text-xs text-mute">
             <span className="font-data text-navy">$1,150</span>
