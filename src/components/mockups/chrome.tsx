@@ -12,6 +12,10 @@ import {
 } from "lucide-react";
 import logoIcon from "../../../public/logo-icon.png";
 
+// Keep the sidebar mark at a fixed height, width following its natural ratio.
+const ICON_H = 24;
+const ICON_W = Math.round(ICON_H * (logoIcon.width / logoIcon.height));
+
 /**
  * Browser-window chrome around a product surface, so it reads as the real
  * app in context rather than a flat card. Neutral dots + a domain pill.
@@ -63,7 +67,13 @@ export function AppSidebar() {
   return (
     <aside className="hidden w-[188px] shrink-0 flex-col bg-navy px-3 py-4 lg:flex">
       <div className="flex items-center gap-2 px-2 pb-5">
-        <Image src={logoIcon} width={22} height={22} alt="" className="rounded-[5px]" />
+        <Image
+          src={logoIcon}
+          width={ICON_W}
+          height={ICON_H}
+          alt=""
+          style={{ height: ICON_H, width: "auto" }}
+        />
         <span className="text-sm font-semibold text-white">Civentry</span>
       </div>
       <nav className="flex flex-col gap-0.5">
