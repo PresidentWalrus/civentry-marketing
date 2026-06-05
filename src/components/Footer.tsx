@@ -69,7 +69,7 @@ export function Footer() {
             © 2026 {site.legalName}. All rights reserved.
           </p>
           <p className="max-w-md text-xs leading-relaxed text-mute/80">
-            Civentry helps you understand your HOA&rsquo;s finances — it
+            Civentry helps you understand your HOA&rsquo;s finances. It
             isn&rsquo;t a substitute for professional financial or legal advice.
           </p>
         </div>

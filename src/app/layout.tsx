@@ -17,13 +17,13 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-const title = "Civentry — HOA finances, minus the headache";
+const title = "Civentry · HOA finances, minus the headache";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
   title: {
     default: title,
-    template: "%s — Civentry",
+    template: "%s · Civentry",
   },
   description: site.description,
   applicationName: site.name,

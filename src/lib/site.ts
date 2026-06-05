@@ -14,7 +14,7 @@ export const site = {
   /** Owning entity, shown in the footer. */
   legalName: "Daddisyn Labs",
   description:
-    "Civentry turns your HOA's messy financial reports into clear answers in minutes — so you get your evenings back.",
+    "Civentry turns your HOA's messy financial reports into clear answers in minutes, so you get your evenings back.",
   app: {
     url: APP_URL,
     signup: `${APP_URL}/signup`,

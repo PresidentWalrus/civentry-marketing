@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { Reveal } from "./Reveal";
+import { Reveal } from "@/components/motion";
 import { Eyebrow } from "./Eyebrow";
 import { Cta } from "./Cta";
 import { primaryCta } from "@/lib/site";
@@ -9,22 +9,21 @@ const REASSURANCE = ["Cancel anytime", "No setup fees", "Built for HOA budgets"]
 
 export function Pricing() {
   return (
-    <section id="pricing" className="scroll-mt-20 border-t border-line/70">
+    <section id="pricing" className="scroll-mt-16 bg-cream">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <Eyebrow className="justify-center">Pricing</Eyebrow>
-          <h2 className="mt-5 text-3xl font-bold leading-tight tracking-[-0.02em] text-navy sm:text-[2.5rem]">
+          <h2 className="mt-5 text-3xl font-extrabold leading-[1.08] tracking-[-0.02em] text-navy sm:text-[2.75rem]">
             Priced for volunteer budgets.
           </h2>
           <p className="mx-auto mt-4 max-w-md text-lg leading-relaxed text-slate">
-            Pay for the hours you get back — not a per-door enterprise contract.
+            Pay for the hours you get back, not a per-door enterprise contract.
           </p>
         </Reveal>
 
-        <Reveal delay={120} className="mx-auto mt-12 max-w-xl">
-          <div className="card-shadow overflow-hidden rounded-[26px] border border-line bg-white">
+        <Reveal delay={0.12} y={32} className="mx-auto mt-12 max-w-xl">
+          <div className="frame-shadow overflow-hidden rounded-[26px] border border-line bg-white">
             <div className="px-8 pt-9 text-center">
-              {/* Two tracks */}
               <div className="flex justify-center gap-2">
                 {TRACKS.map((t) => (
                   <span
@@ -36,7 +35,6 @@ export function Pricing() {
                 ))}
               </div>
 
-              {/* Starting price */}
               <div className="mt-7 flex items-end justify-center gap-1.5">
                 <span className="font-data text-6xl font-medium leading-none tracking-tight text-navy">
                   $9
@@ -45,7 +43,7 @@ export function Pricing() {
               </div>
               <p className="mx-auto mt-4 max-w-sm text-[15px] leading-relaxed text-slate">
                 Plans for solo treasurers and full boards. Final tiers are
-                landing soon — start now and lock in the early price.
+                landing soon. Start now and lock in the early price.
               </p>
             </div>
 

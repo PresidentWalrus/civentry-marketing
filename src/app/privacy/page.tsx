@@ -11,7 +11,7 @@ export default function PrivacyPage() {
     <LegalShell title="Privacy">
       <p>
         We&rsquo;re finalizing our full privacy policy. Civentry treats your
-        association&rsquo;s financial documents as confidential — they&rsquo;re
+        association&rsquo;s financial documents as confidential. They&rsquo;re
         used to generate your insights and nothing else.
       </p>
       <p>
