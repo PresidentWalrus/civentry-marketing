@@ -47,7 +47,7 @@ const PRICING: Track[] = [
         tagline: "Kick the tires. No card required.",
         features: [
           "1 user (just you)",
-          "3 months of history",
+          "6 months of history",
           "Financial dashboard",
           "Basic AI summary",
           "3 document uploads / month",
@@ -95,23 +95,11 @@ const PRICING: Track[] = [
         badge: "Most popular",
         features: [
           "Up to 10 board members",
-          "Unlimited history",
+          "Unlimited history (plus historical document import)",
           "Unlimited document uploads",
           "Transparency controls and resident page",
           "CC&R Assistant (50 questions / month)",
           "Resident summary export",
-        ],
-      },
-      {
-        name: "Board+",
-        monthly: 79,
-        annual: 790,
-        tagline: "The whole board, every tool.",
-        bridge: "Everything in Board, plus:",
-        features: [
-          "Unlimited board members",
-          "Historical document import",
-          "CC&R Assistant (150 questions / month)",
         ],
       },
     ],
@@ -243,7 +231,14 @@ export function Pricing() {
   const [billing, setBilling] = useState<Billing>("monthly");
 
   const track = PRICING.find((t) => t.id === trackId) ?? PRICING[0];
-  const twoUp = track.tiers.length === 2;
+  // One plan (Board) presents as a centered featured card; three (Solo) as a
+  // row. Stays flexible if the lineup changes again.
+  const gridCls =
+    track.tiers.length === 1
+      ? "max-w-md grid-cols-1"
+      : track.tiers.length === 2
+        ? "max-w-3xl sm:grid-cols-2"
+        : "max-w-5xl md:grid-cols-3";
 
   return (
     <section id="pricing" className="scroll-mt-16 bg-cream">
@@ -290,9 +285,7 @@ export function Pricing() {
           key={trackId}
           delay={0.05}
           y={16}
-          className={`mx-auto mt-12 grid grid-cols-1 items-stretch gap-5 ${
-            twoUp ? "max-w-3xl sm:grid-cols-2" : "max-w-5xl md:grid-cols-3"
-          }`}
+          className={`mx-auto mt-12 grid grid-cols-1 items-stretch gap-5 ${gridCls}`}
         >
           {track.tiers.map((tier) => (
             <PlanCard key={tier.name} tier={tier} billing={billing} />
