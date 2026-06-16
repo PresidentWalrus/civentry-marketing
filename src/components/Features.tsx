@@ -1,4 +1,4 @@
-import { FileText, TriangleAlert } from "lucide-react";
+import { FileText, TriangleAlert, Gavel } from "lucide-react";
 import { Reveal } from "@/components/motion";
 import { Eyebrow } from "./Eyebrow";
 import { FeatureRow } from "./FeatureSection";
@@ -7,6 +7,7 @@ import { BrowserFrame } from "./mockups/chrome";
 import { MetricCards } from "./mockups/MetricCards";
 import { ReserveMock } from "./mockups/ReserveMock";
 import { BudgetMock } from "./mockups/BudgetMock";
+import { BidMock } from "./mockups/BidMock";
 import { TreasurerBriefMock } from "./mockups/TreasurerBriefMock";
 import { ResidentMock } from "./mockups/ResidentMock";
 import { CcrMock } from "./mockups/CcrMock";
@@ -115,12 +116,47 @@ export function Features() {
         </div>
       </section>
 
-      {/* 04 Meeting prep - cream, text left / product right */}
+      {/* 04 Bid center (QuixBid) - cream, text left / product right */}
       <section className="bg-cream">
         <div className={SECTION}>
           <FeatureRow
             index="04"
+            eyebrow="Bid center"
+            title="Pick the bid you can defend later."
+            body="Collect bids in one place, compare them side by side, and record exactly why the board chose what it chose. When someone asks next year, the answer's already in the minutes."
+            visual={
+              <div className="relative">
+                <MockFrame>
+                  <BidMock />
+                </MockFrame>
+                <FloatingChip className="-right-3 -top-5 lg:-right-8">
+                  <div className="flex items-center gap-2.5">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal/10">
+                      <Gavel size={14} className="text-teal" aria-hidden />
+                    </span>
+                    <div className="leading-tight">
+                      <p className="text-[12px] font-semibold text-navy">
+                        Decision recorded
+                      </p>
+                      <p className="font-data text-[10px] text-mute">
+                        in the minutes
+                      </p>
+                    </div>
+                  </div>
+                </FloatingChip>
+              </div>
+            }
+          />
+        </div>
+      </section>
+
+      {/* 05 Meeting prep - white, product left / text right */}
+      <section className="bg-white">
+        <div className={SECTION}>
+          <FeatureRow
+            index="05"
             eyebrow="Meeting prep"
+            reverse
             title="Walk in ready. Skip the homework."
             body="Civentry writes a plain-English brief before every meeting: what's up, what's down, and what a resident's about to grill you on. You'll sound like you read the whole packet. We won't tell."
             visual={
@@ -132,13 +168,12 @@ export function Features() {
         </div>
       </section>
 
-      {/* 05 Transparency - white, product left / text right */}
-      <section className="bg-white">
+      {/* 06 Transparency - teal mist, text left / product right */}
+      <section className="bg-mist">
         <div className={SECTION}>
           <FeatureRow
-            index="05"
+            index="06"
             eyebrow="Transparency"
-            reverse
             title="Transparency, without the oversharing."
             body="Give residents a clean, board-approved view of the finances. They see where the money went. They don't see who's three months behind on their dues."
             visual={
@@ -150,12 +185,13 @@ export function Features() {
         </div>
       </section>
 
-      {/* 06 CC&R Assistant - teal mist, text left / product right */}
-      <section className="bg-mist">
+      {/* 07 CC&R Assistant - white, product left / text right */}
+      <section className="bg-white">
         <div className={SECTION}>
           <FeatureRow
-            index="06"
+            index="07"
             eyebrow="CC&R Assistant"
+            reverse
             title="Four cats and a pergola? Ask the documents."
             body="Residents ask the strangest things, and the answer's always buried in 200 pages of CC&Rs. Ask Civentry instead. Plain answer, exact clause, a few seconds."
             visual={
