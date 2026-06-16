@@ -14,11 +14,17 @@ export const site = {
   /** Owning entity, shown in the footer. */
   legalName: "Daddisyn Labs",
   description:
-    "Civentry turns your HOA's messy financial reports into clear answers in minutes, so you get your evenings back.",
+    "Civentry helps HOA boards make and document decisions. Reserves, budgets, bids, and meeting prep in one calm place, backed by financial clarity you can trust.",
   app: {
     url: APP_URL,
     signup: `${APP_URL}/signup`,
     login: `${APP_URL}/login`,
+  },
+  contact: {
+    email: "hello@civentry.com",
+    mailto: "mailto:hello@civentry.com",
+    /** Contact-driven CTA for management companies (no self-serve yet). */
+    sales: "mailto:hello@civentry.com?subject=Civentry%20for%20management%20companies",
   },
 } as const;
 
@@ -36,6 +42,7 @@ export const secondaryCta = {
 /** Top-nav anchor links. */
 export const navLinks = [
   { label: "Features", href: "#features" },
+  { label: "Management", href: "#management" },
   { label: "Why Civentry", href: "#origin" },
   { label: "Pricing", href: "#pricing" },
 ] as const;

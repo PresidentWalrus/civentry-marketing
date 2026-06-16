@@ -52,7 +52,7 @@ export function ClosingCta() {
 
         <Reveal delay={0.26}>
           <p className="mt-6 text-[13px] text-white/50">
-            No credit card to start · Your first answers in minutes
+            Start in minutes · Cancel anytime
           </p>
         </Reveal>
       </div>

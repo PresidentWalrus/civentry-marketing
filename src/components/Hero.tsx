@@ -25,16 +25,16 @@ export function Hero() {
 
           <Reveal delay={0.08}>
             <h1 className="mt-6 text-[2.9rem] font-extrabold leading-[1.02] tracking-[-0.03em] text-navy sm:text-7xl">
-              HOA finances,
+              Board decisions,
               <br />
-              <span className="text-teal">minus the headache.</span>
+              <span className="text-teal">minus the guesswork.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.16}>
             <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-slate sm:text-xl">
-              Upload your reports, let the AI do the squinting, and actually
-              understand where the money goes.
+              Reserves, budgets, bids, and meeting prep in one calm place,
+              backed by financial clarity you can actually trust.
             </p>
           </Reveal>
 
@@ -51,7 +51,7 @@ export function Hero() {
 
           <Reveal delay={0.32}>
             <p className="mt-5 text-[13px] text-mute">
-              No credit card to start · Your first answers in minutes
+              Start in minutes · Cancel anytime
             </p>
           </Reveal>
         </div>

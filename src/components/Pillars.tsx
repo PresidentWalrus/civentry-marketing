@@ -25,11 +25,11 @@ export function Pillars() {
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-extrabold leading-[1.08] tracking-[-0.02em] text-navy sm:text-[2.75rem]">
-            Built to hand your hours back.
+            Built for the decisions, not the busywork.
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-lg leading-relaxed text-slate">
-            Every feature does one job: handle the tedious part, and leave the
-            decisions to you.
+            Civentry handles the reading, the math, and the paperwork, so the
+            only thing left for the board is the call.
           </p>
         </Reveal>
 

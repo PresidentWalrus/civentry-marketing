@@ -17,7 +17,7 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-const title = "Civentry · HOA finances, minus the headache";
+const title = "Civentry · Board decisions, minus the guesswork";
 
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${site.domain}`),
