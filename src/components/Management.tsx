@@ -45,12 +45,15 @@ export function Management() {
             </ul>
 
             <div className="mt-8">
-              <Cta href={site.contact.sales} variant="primary" size="lg" arrow>
-                Talk to us
+              <Cta
+                href={site.app.signup}
+                variant="primary"
+                size="lg"
+                external
+                arrow
+              >
+                Get started
               </Cta>
-              <p className="mt-3 text-[13px] text-mute">
-                Onboarding is hands-on for now, so we set you up personally.
-              </p>
             </div>
           </Reveal>
 
