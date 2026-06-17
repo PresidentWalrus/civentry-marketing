@@ -9,53 +9,55 @@ export const metadata: Metadata = {
     "The agreements, policies, and notices that govern Civentry.",
 };
 
-type Doc = { label: string; href: string; description: string };
+type Doc = { label: string; slug: string; description: string };
 type Group = { heading: string; docs: Doc[] };
 
+// Every document lives at /legal/<slug>. Add a doc by adding an entry here
+// and creating src/app/legal/<slug>/page.tsx.
 const GROUPS: Group[] = [
   {
     heading: "General",
     docs: [
       {
         label: "Terms of Service",
-        href: "/terms",
+        slug: "terms",
         description: "The agreement that governs use of Civentry.",
       },
       {
         label: "Privacy Policy",
-        href: "/privacy",
+        slug: "privacy",
         description: "What we collect, how we use it, and the choices you have.",
       },
       {
         label: "AI Disclaimer and Governance",
-        href: "/ai-disclaimer",
+        slug: "ai-disclaimer",
         description: "How Civentry uses AI and the limits of its outputs.",
       },
       {
         label: "Financial Disclaimer",
-        href: "/financial-disclaimer",
+        slug: "financial-disclaimer",
         description:
           "Important limits on the financial information Civentry provides.",
       },
       {
         label: "Security and Data Handling",
-        href: "/security",
+        slug: "security",
         description: "How we protect and handle your data.",
       },
       {
         label: "Acceptable Use Policy",
-        href: "/acceptable-use",
+        slug: "acceptable-use",
         description: "The rules for using Civentry.",
       },
       {
         label: "Resident Notice",
-        href: "/resident-notice",
+        slug: "resident-notice",
         description:
           "Information for residents whose associations use Civentry.",
       },
       {
         label: "Accessibility Statement",
-        href: "/accessibility",
+        slug: "accessibility",
         description: "Our commitment to an accessible product.",
       },
     ],
@@ -65,13 +67,13 @@ const GROUPS: Group[] = [
     docs: [
       {
         label: "Commercial Terms",
-        href: "/commercial-terms",
+        slug: "commercial-terms",
         description:
           "Terms for management companies and other commercial customers.",
       },
       {
         label: "Data Processing Agreement",
-        href: "/dpa",
+        slug: "dpa",
         description: "How we process personal data on a customer's behalf.",
       },
     ],
@@ -81,7 +83,7 @@ const GROUPS: Group[] = [
     docs: [
       {
         label: "QuixBid Contractor Terms",
-        href: "/quixbid-contractor-terms",
+        slug: "quixbid-contractor-terms",
         description: "Terms for contractors who submit bids through QuixBid.",
       },
     ],
@@ -116,9 +118,9 @@ export default function LegalHubPage() {
               </h2>
               <ul className="mt-4 space-y-3">
                 {group.docs.map((doc) => (
-                  <li key={doc.href}>
+                  <li key={doc.slug}>
                     <a
-                      href={doc.href}
+                      href={`/legal/${doc.slug}`}
                       className="block rounded-2xl border border-line bg-white px-5 py-4 transition-colors hover:border-teal-light"
                     >
                       <p className="font-semibold text-navy">{doc.label}</p>
