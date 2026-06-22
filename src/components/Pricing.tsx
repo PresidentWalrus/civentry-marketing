@@ -22,8 +22,8 @@ type Plan = {
   annual: number;
   /** Priced per community rather than per user. */
   perCommunity?: boolean;
-  /** Contact-driven (no self-serve checkout yet): ignores the billing toggle. */
-  contact?: boolean;
+  /** Flat per-community rate: ignores the billing toggle and shows the note as the sub-line. */
+  flatRate?: boolean;
   tagline: string;
   bridge?: string;
   features: string[];
@@ -77,8 +77,8 @@ const PRICING: Plan[] = [
     monthly: 39,
     annual: 390,
     perCommunity: true,
-    contact: true,
-    note: "Volume discounts available",
+    flatRate: true,
+    note: "From $39 per community · automatic volume discounts as you grow.",
     tagline: "For companies running a whole book of communities.",
     bridge: "Everything in Board, for every community, plus:",
     features: [
@@ -133,14 +133,14 @@ function Segmented({
 }
 
 function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
-  // Contact plans show a flat per-community rate and ignore the toggle.
-  const isAnnual = !plan.contact && billing === "annual";
+  // Flat-rate plans show a single per-community entry rate and ignore the toggle.
+  const isAnnual = !plan.flatRate && billing === "annual";
   const amount = isAnnual ? plan.annual : plan.monthly;
-  const period = plan.contact ? "" : isAnnual ? "/yr" : "/mo";
+  const period = plan.flatRate ? "" : isAnnual ? "/yr" : "/mo";
 
   // Secondary line: keep both cadences visible so the entry price is never buried.
   let sub: string;
-  if (plan.contact) sub = plan.note ?? "";
+  if (plan.flatRate) sub = plan.note ?? "";
   else if (isAnnual) sub = `2 months free · or $${plan.monthly}/mo`;
   else sub = `or $${plan.annual}/yr, 2 months free`;
 
@@ -183,26 +183,15 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
         {sub}
       </p>
 
-      {plan.contact ? (
-        <Cta
-          href={site.contact.sales}
-          variant="secondary"
-          arrow
-          className="mt-6 w-full"
-        >
-          Talk to us
-        </Cta>
-      ) : (
-        <Cta
-          href={site.app.signup}
-          variant="primary"
-          external
-          arrow
-          className="mt-6 w-full"
-        >
-          Get started
-        </Cta>
-      )}
+      <Cta
+        href={site.app.signup}
+        variant="primary"
+        external
+        arrow
+        className="mt-6 w-full"
+      >
+        Get started
+      </Cta>
 
       <div className="mt-7 border-t border-line pt-5">
         {plan.bridge && (
