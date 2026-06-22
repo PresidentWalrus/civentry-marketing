@@ -78,7 +78,7 @@ const PRICING: Plan[] = [
     annual: 390,
     perCommunity: true,
     flatRate: true,
-    note: "From $39 per community · automatic volume discounts as you grow.",
+    note: "Automatic volume discounts as you grow.",
     tagline: "For companies running a whole book of communities.",
     bridge: "Everything in Board, for every community, plus:",
     features: [
